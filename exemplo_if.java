@@ -2,8 +2,7 @@ import javax.swing.*;
 
 class exemplo_if
 
-{ private static String showInputDialog;
-
+{ 
 public static void main(final String args[])
 
   {
