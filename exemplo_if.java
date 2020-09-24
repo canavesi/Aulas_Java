@@ -2,19 +2,27 @@ import javax.swing.*;
 
 class exemplo_if
 
-{ public static void main(final String args[])
+{ private static String showInputDialog;
+
+public static void main(final String args[])
 
   {
-      double valor = 4.5;
+      double valor;
+      String ler_nota;
+      ler_nota = JOptionPane.showInputDialog("Entre com a nota");
+      valor = Double.parseDouble(ler_nota);
+      String situacao = "";
 
         if (valor >= 7)
-          JOptionPane.showMessageDialog(null,"O aluno esta aprovado");
+          situacao = "O aluno esta aprovado";
         else if (valor >=5)
-          JOptionPane.showMessageDialog(null,"O aluno esta em recuperação");
+          situacao = "O aluno esta em recuperação";
         else if (valor >=4)
-          JOptionPane.showMessageDialog(null, "O aluno esta em recuperação (Exame)");
+          situacao = "O aluno esta em recuperação (Exame)";
         else
-          JOptionPane.showMessageDialog(null, "O aluno esta em reprovado");
+          situacao = "O aluno esta em reprovado";
+
+          JOptionPane.showMessageDialog(null, situacao );
 
   }
 
