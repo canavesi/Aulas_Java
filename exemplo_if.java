@@ -1,20 +1,29 @@
+import javax.swing.*;
+
 class exemplo_if
 
-{ public static void main(final String args[]) {
-        final double valor = 4.0;
+{ private static String showInputDialog;
 
-    if (valor >= 5)
-      System.out.println("O valor e maior ou igaul a 5");
-    else
-      System.out.println("O Valor é menor que 5");
-    
+public static void main(final String args[])
 
+  {
+      double valor;
+      String ler_nota;
+      ler_nota = JOptionPane.showInputDialog("Entre com a nota");
+      valor = Double.parseDouble(ler_nota);
+      String situacao = "";
 
+        if (valor >= 7)
+          situacao = "O aluno esta aprovado";
+        else if (valor >=5)
+          situacao = "O aluno esta em recuperação";
+        else if (valor >=4)
+          situacao = "O aluno esta em recuperação (Exame)";
+        else
+          situacao = "O aluno esta em reprovado";
 
-}
+          JOptionPane.showMessageDialog(null, situacao );
 
-
-
-
+  }
 
 }
