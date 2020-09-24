@@ -1,19 +1,19 @@
 class exemplo_if
 
-{ public static void main(final String args[]) {
-        final double valor = 4.0;
+{ public static void main(final String args[])
 
-    if (valor >= 5)
-      System.out.println("O valor e maior ou igaul a 5");
-    else
-      System.out.println("O Valor é menor que 5");
+  {
+      double valor = 4.5;
 
+        if (valor >= 7)
+          System.out.println("O aluno esta aprovado");
+        else if (valor >=5)
+          System.out.println("O aluno esta em recuperação");
+        else if (valor >=4)
+          System.out.println("O aluno esta em recuperação (Exame)");
+        else
+          System.out.println("O aluno esta em reprovado");
 
-
-}
-
-
-
-
+  }
 
 }
