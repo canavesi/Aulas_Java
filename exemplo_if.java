@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 class exemplo_if
 
 { public static void main(final String args[])
@@ -6,13 +8,13 @@ class exemplo_if
       double valor = 4.5;
 
         if (valor >= 7)
-          System.out.println("O aluno esta aprovado");
+          JOptionPane.showMessageDialog(null,"O aluno esta aprovado");
         else if (valor >=5)
-          System.out.println("O aluno esta em recuperação");
+          JOptionPane.showMessageDialog(null,"O aluno esta em recuperação");
         else if (valor >=4)
-          System.out.println("O aluno esta em recuperação (Exame)");
+          JOptionPane.showMessageDialog(null, "O aluno esta em recuperação (Exame)");
         else
-          System.out.println("O aluno esta em reprovado");
+          JOptionPane.showMessageDialog(null, "O aluno esta em reprovado");
 
   }
 
