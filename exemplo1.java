@@ -9,11 +9,11 @@ class exemplo1
              System.out.println(num1);
              System.out.println(num2);
              System.out.println(num3);
-             System.out.println("A multiplicação de num1 pelo num2 é: "+(num1*num2));
-             System.out.println("A Divisão de num1 pelo num2 é: "+(num1/num2));
-             System.out.println("A soma de num1 pelo num2 é: "+(num1+num2));
-             System.out.println("A Subtração de num1 pelo num2 é: "+(num1-num2));
-             System.out.println("A multiplicação de num1 pelo num3 é: "+(num1*num3));
+             System.out.println("A multiplicaï¿½ ï¿½o de num1 pelo num2 ï¿½: "+(num1*num2));
+             System.out.println("A Divisï¿½o de num1 pelo num2 ï¿½: "+(num1/num2));
+             System.out.println("A soma de num1 pelo num2 ï¿½: "+(num1+num2));
+             System.out.println("A Subtraï¿½ï¿½o de num1 pelo num2 ï¿½: "+(num1-num2));
+             System.out.println("A multiplicaï¿½ï¿½o de num1 pelo num3 ï¿½: "+(num1*num3));
         }
 
 }
