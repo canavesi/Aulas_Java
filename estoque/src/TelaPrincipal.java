@@ -18,6 +18,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /** Creates new form TelaPrincipal */
     public TelaPrincipal() {
         initComponents();
+        data mostra_data = new data();
+        mostra_data.le_data();
+        Label_data.setText("Data  " +mostra_data.dia_semana+", "+mostra_data.dia + " " + (mostra_data.mes ) + 
+                            " " + mostra_data.ano );
+        
+        mostra_data.le_hora();
+        label_hora.setText("Horário: " + mostra_data.hora);
+        
+        
+        
+        
     }
 
     /** This method is called from within the constructor to
@@ -30,6 +41,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         timer1 = new org.netbeans.examples.lib.timerbean.Timer();
+        jPanel1 = new javax.swing.JPanel();
+        bt_clientes = new javax.swing.JButton();
+        Logo_empresa = new javax.swing.JLabel();
+        v_nome_sistema = new javax.swing.JLabel();
+        Label_data = new javax.swing.JLabel();
+        label_hora = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menucadastros = new javax.swing.JMenu();
         menuitem_clientes = new javax.swing.JMenuItem();
@@ -52,6 +69,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de Estoque Neri");
+
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+
+        bt_clientes.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Imagens\\dinheiro2.gif")); // NOI18N
+        bt_clientes.setText("Clientes");
+
+        Logo_empresa.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Imagens\\logo_kyra.gif")); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(bt_clientes)
+                .addGap(430, 430, 430)
+                .addComponent(Logo_empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(32, 32, 32))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Logo_empresa)
+                    .addComponent(bt_clientes))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        v_nome_sistema.setText("Sistema de Estoque Neri");
+
+        Label_data.setText("Data:");
+
+        label_hora.setText("Hora");
 
         menucadastros.setMnemonic('C');
         menucadastros.setText("Cadastros");
@@ -144,14 +196,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(v_nome_sistema, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_data, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(Label_data)
+                .addGap(18, 18, 18)
+                .addComponent(label_hora)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(v_nome_sistema, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-800)/2, (screenSize.height-450)/2, 800, 450);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -166,12 +241,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Label_data;
+    private javax.swing.JLabel Logo_empresa;
     private javax.swing.JMenu Menu_Relatorios;
+    private javax.swing.JButton bt_clientes;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JLabel label_hora;
     private javax.swing.JMenu menu_consultas;
     private javax.swing.JMenu menu_estoque;
     private javax.swing.JMenu menucadastros;
@@ -187,6 +267,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem menuitem_saida;
     private javax.swing.JMenuItem menuitem_sair;
     private org.netbeans.examples.lib.timerbean.Timer timer1;
+    private javax.swing.JLabel v_nome_sistema;
     // End of variables declaration//GEN-END:variables
 
 }
