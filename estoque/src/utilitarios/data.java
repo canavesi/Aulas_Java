@@ -1,9 +1,9 @@
-
+package utilitarios;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 public class data
 {
-    String dia, mes, ano, dia_semana, hora;
+    public String dia, mes, ano, dia_semana, hora;
     SimpleDateFormat horaformatada = new SimpleDateFormat("HH:mm:ss");
     
     public void le_hora()

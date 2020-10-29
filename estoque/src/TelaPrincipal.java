@@ -13,23 +13,24 @@
  *
  * @author Carlos
  */
+import javax.swing.*;
+import utilitarios.data;
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    data mostra_data;
+    String seta_look = "javax.swing.plaf.metal.MetalLookAndFeel";
+    
     /** Creates new form TelaPrincipal */
+  
     public TelaPrincipal() {
         initComponents();
-        data mostra_data = new data();
+        mostra_data = new data();
         mostra_data.le_data();
         Label_data.setText("Data  " +mostra_data.dia_semana+", "+mostra_data.dia + " " + (mostra_data.mes ) + 
                             " " + mostra_data.ano );
         
-        mostra_data.le_hora();
-        label_hora.setText("Horário: " + mostra_data.hora);
-        
-        
-        
-        
-    }
+        timer1.start();
+        lookandfeel();
+   }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -44,6 +45,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         bt_clientes = new javax.swing.JButton();
         Logo_empresa = new javax.swing.JLabel();
+        bt_cidades = new javax.swing.JButton();
+        bt_bairros = new javax.swing.JButton();
+        bt_sair = new javax.swing.JButton();
         v_nome_sistema = new javax.swing.JLabel();
         Label_data = new javax.swing.JLabel();
         label_hora = new javax.swing.JLabel();
@@ -65,8 +69,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuitem_sair = new javax.swing.JMenuItem();
         menu_consultas = new javax.swing.JMenu();
         Menu_Relatorios = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        Menu_Utilitarios = new javax.swing.JMenu();
+        Menu_item_look_metal = new javax.swing.JMenuItem();
+        Menu_item_menu_look_liquid = new javax.swing.JMenuItem();
+        Menu_item_look_windows = new javax.swing.JMenuItem();
+        Menu_item_look_motif = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+
+        timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
+            public void onTime(java.awt.event.ActionEvent evt) {
+                timer1OnTime(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Estoque Neri");
@@ -78,25 +92,54 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Logo_empresa.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Imagens\\logo_kyra.gif")); // NOI18N
 
+        bt_cidades.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Imagens\\old_87.gif")); // NOI18N
+        bt_cidades.setText("Cidades");
+
+        bt_bairros.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Imagens\\descendente.gif")); // NOI18N
+        bt_bairros.setText("Bairros");
+        bt_bairros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_bairrosActionPerformed(evt);
+            }
+        });
+
+        bt_sair.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Imagens\\sair.gif")); // NOI18N
+        bt_sair.setText("Sair");
+        bt_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_sairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(23, 23, 23)
                 .addComponent(bt_clientes)
-                .addGap(430, 430, 430)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bt_cidades)
+                .addGap(18, 18, 18)
+                .addComponent(bt_bairros)
+                .addGap(18, 18, 18)
+                .addComponent(bt_sair)
+                .addGap(123, 123, 123)
                 .addComponent(Logo_empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(32, 32, 32))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Logo_empresa)
-                    .addComponent(bt_clientes))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bt_clientes)
+                        .addComponent(bt_cidades)
+                        .addComponent(bt_bairros)
+                        .addComponent(bt_sair)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         v_nome_sistema.setText("Sistema de Estoque Neri");
@@ -182,12 +225,50 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Menu_Relatorios.setText("Relatórios");
         jMenuBar1.add(Menu_Relatorios);
 
-        jMenu4.setMnemonic('U');
-        jMenu4.setText("Utilitários");
-        jMenuBar1.add(jMenu4);
+        Menu_Utilitarios.setMnemonic('U');
+        Menu_Utilitarios.setText("Utilitários");
+
+        Menu_item_look_metal.setText("Look Metal");
+        Menu_item_look_metal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_item_look_metalActionPerformed(evt);
+            }
+        });
+        Menu_Utilitarios.add(Menu_item_look_metal);
+
+        Menu_item_menu_look_liquid.setText("Look Liquid");
+        Menu_item_menu_look_liquid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_item_menu_look_liquidActionPerformed(evt);
+            }
+        });
+        Menu_Utilitarios.add(Menu_item_menu_look_liquid);
+
+        Menu_item_look_windows.setText("Look Windows");
+        Menu_item_look_windows.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_item_look_windowsActionPerformed(evt);
+            }
+        });
+        Menu_Utilitarios.add(Menu_item_look_windows);
+
+        Menu_item_look_motif.setText("Look Motif");
+        Menu_item_look_motif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_item_look_motifActionPerformed(evt);
+            }
+        });
+        Menu_Utilitarios.add(Menu_item_look_motif);
+
+        jMenuBar1.add(Menu_Utilitarios);
 
         jMenu5.setMnemonic('S');
         jMenu5.setText("Sair");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -199,28 +280,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(v_nome_sistema, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Label_data, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(108, Short.MAX_VALUE))
+                            .addComponent(Label_data, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
+                .addGap(220, 220, 220)
                 .addComponent(Label_data)
                 .addGap(18, 18, 18)
                 .addComponent(label_hora)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(v_nome_sistema, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -228,6 +308,52 @@ public class TelaPrincipal extends javax.swing.JFrame {
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-800)/2, (screenSize.height-450)/2, 800, 450);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void timer1OnTime(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timer1OnTime
+        // TODO add your handling code here:
+        
+        mostra_data.le_hora();
+        label_hora.setText("Hora Local:  "+ mostra_data.hora);
+    }//GEN-LAST:event_timer1OnTime
+
+    private void bt_bairrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_bairrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_bairrosActionPerformed
+
+    private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_bt_sairActionPerformed
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void Menu_item_look_metalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_item_look_metalActionPerformed
+        // TODO add your handling code here:
+        seta_look="javax.swing.plaf.metal.MetalLookAndFeel";
+        lookandfeel();
+    }//GEN-LAST:event_Menu_item_look_metalActionPerformed
+
+    private void Menu_item_menu_look_liquidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_item_menu_look_liquidActionPerformed
+        // TODO add your handling code here:
+        seta_look="com.birosoft.liquid.LiquidLookAndFeel";
+        lookandfeel();
+    }//GEN-LAST:event_Menu_item_menu_look_liquidActionPerformed
+
+    private void Menu_item_look_windowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_item_look_windowsActionPerformed
+        // TODO add your handling code here:
+        seta_look="com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+        lookandfeel();
+
+    }//GEN-LAST:event_Menu_item_look_windowsActionPerformed
+
+    private void Menu_item_look_motifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_item_look_motifActionPerformed
+        // TODO add your handling code here:
+        seta_look="com.sun.java.swing.plaf.motif.MotifLookAndFeel";
+        lookandfeel();
+    }//GEN-LAST:event_Menu_item_look_motifActionPerformed
 
     /**
     * @param args the command line arguments
@@ -244,8 +370,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel Label_data;
     private javax.swing.JLabel Logo_empresa;
     private javax.swing.JMenu Menu_Relatorios;
+    private javax.swing.JMenu Menu_Utilitarios;
+    private javax.swing.JMenuItem Menu_item_look_metal;
+    private javax.swing.JMenuItem Menu_item_look_motif;
+    private javax.swing.JMenuItem Menu_item_look_windows;
+    private javax.swing.JMenuItem Menu_item_menu_look_liquid;
+    private javax.swing.JButton bt_bairros;
+    private javax.swing.JButton bt_cidades;
     private javax.swing.JButton bt_clientes;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JButton bt_sair;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -270,4 +403,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel v_nome_sistema;
     // End of variables declaration//GEN-END:variables
 
+    public void lookandfeel()
+    {
+         try
+        {
+            UIManager.setLookAndFeel(seta_look);
+            SwingUtilities.updateComponentTreeUI(this);
+        }
+        catch(Exception erro) 
+        {
+           JOptionPane.showMessageDialog(null,erro);
+        }
+    }
 }
