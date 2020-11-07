@@ -15,7 +15,9 @@
  */
 import javax.swing.*;
 import utilitarios.data;
+import cadastros.cad_cidades;
 public class TelaPrincipal extends javax.swing.JFrame {
+
     data mostra_data;
     String seta_look = "javax.swing.plaf.metal.MetalLookAndFeel";
     
@@ -70,11 +72,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menu_consultas = new javax.swing.JMenu();
         Menu_Relatorios = new javax.swing.JMenu();
         Menu_Utilitarios = new javax.swing.JMenu();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         Menu_item_look_metal = new javax.swing.JMenuItem();
         Menu_item_menu_look_liquid = new javax.swing.JMenuItem();
         Menu_item_look_windows = new javax.swing.JMenuItem();
         Menu_item_look_motif = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        Menu_Sair = new javax.swing.JMenu();
 
         timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
             public void onTime(java.awt.event.ActionEvent evt) {
@@ -94,6 +97,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         bt_cidades.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Imagens\\old_87.gif")); // NOI18N
         bt_cidades.setText("Cidades");
+        bt_cidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_cidadesActionPerformed(evt);
+            }
+        });
 
         bt_bairros.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Imagens\\descendente.gif")); // NOI18N
         bt_bairros.setText("Bairros");
@@ -150,6 +158,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menucadastros.setMnemonic('C');
         menucadastros.setText("Cadastros");
+        menucadastros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menucadastrosMouseClicked(evt);
+            }
+        });
 
         menuitem_clientes.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Icones\\dinheiro2.gif")); // NOI18N
         menuitem_clientes.setMnemonic('C');
@@ -227,6 +240,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Menu_Utilitarios.setMnemonic('U');
         Menu_Utilitarios.setText("Utilitários");
+        Menu_Utilitarios.add(jSeparator3);
 
         Menu_item_look_metal.setText("Look Metal");
         Menu_item_look_metal.addActionListener(new java.awt.event.ActionListener() {
@@ -262,14 +276,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(Menu_Utilitarios);
 
-        jMenu5.setMnemonic('S');
-        jMenu5.setText("Sair");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        Menu_Sair.setMnemonic('S');
+        Menu_Sair.setText("Sair");
+        Menu_Sair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+                Menu_SairMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(Menu_Sair);
 
         setJMenuBar(jMenuBar1);
 
@@ -325,10 +339,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_bt_sairActionPerformed
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+    private void Menu_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu_SairMouseClicked
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jMenu5MouseClicked
+    }//GEN-LAST:event_Menu_SairMouseClicked
 
     private void Menu_item_look_metalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_item_look_metalActionPerformed
         // TODO add your handling code here:
@@ -355,6 +369,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lookandfeel();
     }//GEN-LAST:event_Menu_item_look_motifActionPerformed
 
+    private void bt_cidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cidadesActionPerformed
+        // TODO add your handling code here:
+        new cad_cidades().show();
+    }//GEN-LAST:event_bt_cidadesActionPerformed
+
+    private void menucadastrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menucadastrosMouseClicked
+        // TODO add your handling code here:
+        new cadastros.cad_cidades().show();
+    }//GEN-LAST:event_menucadastrosMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -370,6 +394,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel Label_data;
     private javax.swing.JLabel Logo_empresa;
     private javax.swing.JMenu Menu_Relatorios;
+    private javax.swing.JMenu Menu_Sair;
     private javax.swing.JMenu Menu_Utilitarios;
     private javax.swing.JMenuItem Menu_item_look_metal;
     private javax.swing.JMenuItem Menu_item_look_motif;
@@ -379,11 +404,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton bt_cidades;
     private javax.swing.JButton bt_clientes;
     private javax.swing.JButton bt_sair;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JLabel label_hora;
     private javax.swing.JMenu menu_consultas;
     private javax.swing.JMenu menu_estoque;
