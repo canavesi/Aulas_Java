@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import utilitarios.conexao;
 public class cad_cidades extends javax.swing.JFrame {
     int navega = 0;
+    int inicia_combo = 0;
     conexao con_cidade;
     
     /** Creates new form cad_cidades */
@@ -34,6 +35,8 @@ public class cad_cidades extends javax.swing.JFrame {
        
         try
             {
+                while (con_cidade.resultset.next())
+                        cb_pesquisa.addItem(con_cidade.resultset.getString("nome"));
                 con_cidade.resultset.first();
                 mostra_dados();
             }
@@ -75,6 +78,8 @@ public class cad_cidades extends javax.swing.JFrame {
         cb_pesquisa = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         botao_inserir = new javax.swing.JButton();
+        botao_pesquisar = new javax.swing.JButton();
+        botao_pesquisa_cb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mautenção do Cadastro de Cidades");
@@ -84,6 +89,12 @@ public class cad_cidades extends javax.swing.JFrame {
         jLabel1.setText("Manutenção do Cadastro de Cidades");
 
         jLabel2.setText("Código: ");
+
+        tf_codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_codigoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nome:");
 
@@ -149,7 +160,17 @@ public class cad_cidades extends javax.swing.JFrame {
 
         jLabel5.setText("Pesquisar:");
 
-        cb_pesquisa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tf_pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_pesquisaActionPerformed(evt);
+            }
+        });
+
+        cb_pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_pesquisaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -170,6 +191,20 @@ public class cad_cidades extends javax.swing.JFrame {
             }
         });
 
+        botao_pesquisar.setText("Pesquisar");
+        botao_pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_pesquisarActionPerformed(evt);
+            }
+        });
+
+        botao_pesquisa_cb.setText("Pesquisar");
+        botao_pesquisa_cb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_pesquisa_cbActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,20 +215,20 @@ public class cad_cidades extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tf_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(cb_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(60, 60, 60)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(41, 41, 41)
                                         .addComponent(cb_uf, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(tf_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(botao_pesquisar))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2)
@@ -201,7 +236,11 @@ public class cad_cidades extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(tf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(cb_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(botao_pesquisa_cb)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
@@ -223,7 +262,7 @@ public class cad_cidades extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botao_gravar)
                             .addComponent(bt_ultimo))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,10 +273,14 @@ public class cad_cidades extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tf_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botao_pesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cb_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botao_pesquisa_cb))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -249,7 +292,7 @@ public class cad_cidades extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cb_uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)))
                 .addGap(26, 26, 26)
@@ -337,7 +380,7 @@ public class cad_cidades extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_botao_inserirActionPerformed
 
-    private void botao_gravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_gravarActionPerformed
+    private void botao_gravarActionPerformed(java.awt.event.ActionEvent evt) {                                             
     //c�digo para Gravar os dados no Banco de Dados
     try
     {
@@ -359,7 +402,7 @@ public class cad_cidades extends javax.swing.JFrame {
      {
 	JOptionPane.showMessageDialog(null,"Erro a tentar Gravar o registro..."+erro);
      }    
-    }//GEN-LAST:event_botao_gravarActionPerformed    }//GEN-LAST:event_botao_gravarActionPerformed
+    }                                                                                             
 
     private void botao_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_excluirActionPerformed
     // procedimento para exclus�o de registro
@@ -390,8 +433,116 @@ public class cad_cidades extends javax.swing.JFrame {
     {
 	JOptionPane.showMessageDialog(null,"Erro a tentar excluir o registro..."+erro);
      }      
-    }//GEN-LAST:event_botao_excluirActionPerformed
+    }                                             
 //GEN-LAST:event_botao_excluirActionPerformed
+    private void botao_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        try
+            {
+                   con_cidade.resultset.first();
+                   String igual = "n";
+                   int tamanho_pesquisa = tf_pesquisa.getText().length();
+                   while(igual == "n")
+                   {
+                         String pesquisado = con_cidade.resultset.getString("nome").substring(0,(tamanho_pesquisa));
+
+                            if (pesquisado.equals(tf_pesquisa.getText()))
+                            {
+                                 igual = "s";
+                            }
+                        else
+                             con_cidade.resultset.next();
+                    }                          
+                   // nas linhas abaxo, mostra_conteudo_tabela();
+                   tf_codigo.setText(con_cidade.resultset.getString("cod"));//Essas duas linhas � neces�ria                   
+                   mostra_dados();                              
+            }
+        catch(Exception erro)
+            {
+                JOptionPane.showMessageDialog(null, "N�o conseguiu localizar via digita��o, erro = "+erro);
+            }        // TODO add your handling code here:
+    }                                                                                               
+
+    private void tf_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_codigoActionPerformed
+
+    private void botao_pesquisa_cbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_pesquisa_cbActionPerformed
+                try
+         {
+                con_cidade.resultset.first();
+                String igual = "n"; //inicia dizendo que n�o localizou a cidade                  
+                while(igual == "n") //diz que enquanto n�o localizar � para ir executando
+                {
+                        if (con_cidade.resultset.getString("nome").equals(cb_pesquisa.getSelectedItem()))
+                        {
+                            igual = "s"; //indica que achou a cidade
+                        }
+                        else
+                            con_cidade.resultset.next(); //enquanto n�o achar vai para o proximo                   
+                    }
+                   // nas linhas abaxo, mostra_conteudo_tabela();
+                  tf_codigo.setText(con_cidade.resultset.getString("cod"));//Essas duas linhas s�o neces�rias                   
+                   mostra_dados();
+               }
+        catch(Exception erro)
+        {
+            //JOptionPane.showMessageDialog(null, "N�o conseguiu localizar via Sele��o no JComboBox, erro = "+erro);
+        }    }//GEN-LAST:event_botao_pesquisa_cbActionPerformed
+
+    private void cb_pesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_pesquisaActionPerformed
+        if (inicia_combo == 1 ) {
+            
+        try
+         {
+                con_cidade.resultset.first();
+                String igual = "n"; //inicia dizendo que n�o localizou a cidade                  
+                while(igual == "n") //diz que enquanto n�o localizar � para ir executando
+                {
+                        if (con_cidade.resultset.getString("nome").equals(cb_pesquisa.getSelectedItem()))
+                        {
+                            igual = "s"; //indica que achou a cidade
+                        }
+                        else
+                            con_cidade.resultset.next(); //enquanto n�o achar vai para o proximo                   
+                    }
+                   // nas linhas abaxo, mostra_conteudo_tabela();
+                  tf_codigo.setText(con_cidade.resultset.getString("cod"));//Essas duas linhas s�o neces�rias                   
+                   mostra_dados();
+               }
+        catch(Exception erro)
+        {
+            //JOptionPane.showMessageDialog(null, "N�o conseguiu localizar via Sele��o no JComboBox, erro = "+erro);
+        } 
+        } else { inicia_combo = 1;}
+     }//GEN-LAST:event_cb_pesquisaActionPerformed
+
+    private void tf_pesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_pesquisaActionPerformed
+        try
+            {
+                   con_cidade.resultset.first();
+                   String igual = "n";
+                   int tamanho_pesquisa = tf_pesquisa.getText().length();
+                   while(igual == "n")
+                   {
+                         String pesquisado = con_cidade.resultset.getString("nome").substring(0,(tamanho_pesquisa));
+
+                            if (pesquisado.equals(tf_pesquisa.getText()))
+                            {
+                                 igual = "s";
+                            }
+                        else
+                             con_cidade.resultset.next();
+                    }                          
+                   // nas linhas abaxo, mostra_conteudo_tabela();
+                   tf_codigo.setText(con_cidade.resultset.getString("cod"));//Essas duas linhas � neces�ria                   
+                   mostra_dados(); 
+                   cb_pesquisa.setSelectedItem(tf_nome.getText());
+            }
+        catch(Exception erro)
+            {
+                JOptionPane.showMessageDialog(null, "N�o conseguiu localizar via digita��o, erro = "+erro);
+            }        // TODO add your handling code here:
+     }//GEN-LAST:event_tf_pesquisaActionPerformed
     /**
     * @param args the command line arguments
     */
@@ -408,6 +559,8 @@ public class cad_cidades extends javax.swing.JFrame {
     private javax.swing.JButton botao_excluir;
     private javax.swing.JButton botao_gravar;
     private javax.swing.JButton botao_inserir;
+    private javax.swing.JButton botao_pesquisa_cb;
+    private javax.swing.JButton botao_pesquisar;
     private javax.swing.JButton bt_anterior;
     private javax.swing.JButton bt_primeiro;
     private javax.swing.JButton bt_proximo;
