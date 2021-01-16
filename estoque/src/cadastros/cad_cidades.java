@@ -29,22 +29,18 @@ public class cad_cidades extends javax.swing.JFrame {
         
         con_cidade = new conexao();
         con_cidade.conecta();
-        
-       
+        atualiza_combo_box_cidade();
         con_cidade.executeSQL("Select * from cidade order by cod");
-       
         try
-            {
-                while (con_cidade.resultset.next())
-                        cb_pesquisa.addItem(con_cidade.resultset.getString("nome"));
-                con_cidade.resultset.first();
-                mostra_dados();
-            }
+        {
+          atualiza_combo_box_cidade(); 
+          con_cidade.resultset.first();
+          mostra_dados();
+        }
         catch(SQLException erro)
         {
-           JOptionPane.showMessageDialog(null, "Não localizou cidade" + erro);
-        }
-        
+            JOptionPane.showMessageDialog(null,"N�o localizou dados "+erro);
+        }  
     }
 
     /** This method is called from within the constructor to
@@ -157,6 +153,11 @@ public class cad_cidades extends javax.swing.JFrame {
 
         botao_alterar.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Icones\\10.gif")); // NOI18N
         botao_alterar.setToolTipText("Alterar");
+        botao_alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_alterarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Pesquisar:");
 
@@ -394,6 +395,7 @@ public class cad_cidades extends javax.swing.JFrame {
        
        //atualiza o ResultSet
        //con_cidade.resultset = con_cidade.statement.executeQuery("Select * from cidade");
+       atualiza_combo_box_cidade();
        con_cidade.executeSQL("select * from cidade  order by cod");
        con_cidade.resultset.first(); //posiciona no primeiro registro
        mostra_dados(); //ir� chamar a fun��o em que ir� mstrar os dados no form
@@ -421,6 +423,7 @@ public class cad_cidades extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(null,"Exclus�o realizada com sucesso");
                 //atualiza o ResultSet
+                atualiza_combo_box_cidade();
                 con_cidade.executeSQL("Select * from cidade  order by cod");
                 con_cidade.resultset.first(); //posiciona no primeiro registro
                 mostra_dados(); //ir� chamar a fun��o em que ir� mstrar os dados no form
@@ -543,6 +546,35 @@ public class cad_cidades extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "N�o conseguiu localizar via digita��o, erro = "+erro);
             }        // TODO add your handling code here:
      }//GEN-LAST:event_tf_pesquisaActionPerformed
+
+    private void botao_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_alterarActionPerformed
+    try
+    {
+        String sql ="UPDATE cidade SET nome ='"+tf_nome.getText()+"',"+
+                     "uf = '"+cb_uf.getSelectedItem()+"' where cod = "+tf_codigo.getText();
+        con_cidade.statement.executeUpdate(sql);
+        JOptionPane.showMessageDialog(null,"Altera��o realizado com sucesso!");
+       
+       //atualiza o ResultSet
+       atualiza_combo_box_cidade();
+       con_cidade.executeSQL("Select * from cidade  order by cod");
+       con_cidade.resultset.next(); //posiciona no primeiro registro
+       mostra_dados(); //ir� chamar a fun��o em que ir� mstrar os dados no form
+     }
+     catch (SQLException erro)
+     {
+	JOptionPane.showMessageDialog(null,"Erro a tentar Alterar o registro..."+erro);
+     }       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+    }//GEN-LAST:event_botao_alterarActionPerformed
     /**
     * @param args the command line arguments
     */
@@ -595,6 +627,20 @@ public class cad_cidades extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Não localizou cidade" + erro);
         }
     }
-            
+    
+    public void atualiza_combo_box_cidade()
+    {
+        try
+            {
+                cb_pesquisa.removeAllItems();
+                con_cidade.executeSQL("select * from cidade  order by cod");
+                while (con_cidade.resultset.next())
+                        cb_pesquisa.addItem(con_cidade.resultset.getString("nome"));
+            }
+        catch(SQLException erro)
+            {
+               JOptionPane.showMessageDialog(null, "Não localizou cidade" + erro);
+            }
+    }
     
 }
