@@ -21,7 +21,7 @@ public class conexao
             {
                 Class.forName(driver);
                 conexao = DriverManager.getConnection(url, usuario, senha);
-                JOptionPane.showMessageDialog(null,"conectou");
+                //JOptionPane.showMessageDialog(null,"conectou");
             }
             catch(ClassNotFoundException Driver) 
             {
@@ -44,7 +44,7 @@ public class conexao
             {
                 Class.forName(driver);
                 conexao = DriverManager.getConnection(url, usuario, senha);
-                JOptionPane.showMessageDialog(null,"conectou");
+                //JOptionPane.showMessageDialog(null,"conectou");
             }
             catch(ClassNotFoundException Driver) 
             {

@@ -4,7 +4,7 @@
  */
 
 /*
- * cad_cidades.java
+ * cad_bairros.java
  *
  * Created on 06/11/2020, 15:51:55
  */
@@ -19,21 +19,21 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import utilitarios.conexao;
-public class cad_cidades extends javax.swing.JFrame {
+public class cad_bairros extends javax.swing.JFrame {
     int navega = 0;
     int inicia_combo = 0;
     String ordenacao = "nome";
     conexao con_cidade;
     
-    /** Creates new form cad_cidades */
-    public cad_cidades() 
+    /** Creates new form cad_bairro */
+    public cad_bairros() 
     {
         initComponents();
         
         con_cidade = new conexao();
         con_cidade.conecta();
         atualiza_combo_box_cidade();
-        con_cidade.executeSQL("Select * from cidade order by " + ordenacao);
+        con_cidade.executeSQL("Select * from bairro order by " + ordenacao);
         try
         {
           atualiza_combo_box_cidade(); 
@@ -64,9 +64,7 @@ public class cad_cidades extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tf_codigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         tf_nome = new javax.swing.JTextField();
-        cb_uf = new javax.swing.JComboBox();
         bt_primeiro = new javax.swing.JButton();
         bt_anterior = new javax.swing.JButton();
         bt_proximo = new javax.swing.JButton();
@@ -97,7 +95,7 @@ public class cad_cidades extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 204));
-        jLabel1.setText("Manutenção do Cadastro de Cidades");
+        jLabel1.setText("Manutenção do Cadastro de Bairros");
 
         jLabel2.setText("Código: ");
 
@@ -108,15 +106,6 @@ public class cad_cidades extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Nome:");
-
-        jLabel4.setText("UF:");
-
-        cb_uf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SP", "RJ", "SC", "RS", "PR", "MG", "DF" }));
-        cb_uf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_ufActionPerformed(evt);
-            }
-        });
 
         bt_primeiro.setIcon(new javax.swing.ImageIcon("C:\\Desenv\\Aulas_Java\\estoque\\Icones\\166.gif")); // NOI18N
         bt_primeiro.setToolTipText("Primeiro registro");
@@ -269,17 +258,17 @@ public class cad_cidades extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Código", "Nome da Cidade", "UF"
+                "Código", "Nome do bairro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false
+                false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -347,28 +336,21 @@ public class cad_cidades extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(14, 14, 14)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addComponent(jLabel1)))
-                .addGap(0, 95, Short.MAX_VALUE))
+                .addGap(0, 91, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jLabel4)
-                                .addGap(8, 8, 8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cb_uf, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -397,11 +379,11 @@ public class cad_cidades extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -410,19 +392,16 @@ public class cad_cidades extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cb_uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(26, 26, 26))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bt_primeiro)
-                    .addComponent(bt_anterior, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bt_proximo)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(bt_primeiro)
+                        .addComponent(bt_anterior, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(bt_proximo))
                     .addComponent(bt_ultimo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,16 +415,12 @@ public class cad_cidades extends javax.swing.JFrame {
                 .addComponent(bt_filtrar_grade)
                 .addGap(3, 3, 3)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(530, 617));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cb_ufActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_ufActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_ufActionPerformed
 
     private void bt_proximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_proximoActionPerformed
         try
@@ -503,7 +478,6 @@ public class cad_cidades extends javax.swing.JFrame {
     private void botao_inserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_inserirActionPerformed
         tf_codigo.setText("");
         tf_nome.setText("");
-        cb_uf.setSelectedItem("SP");
         tf_nome.requestFocus();
         tf_codigo.setEditable(false);
                 
@@ -513,18 +487,17 @@ public class cad_cidades extends javax.swing.JFrame {
     //c�digo para Gravar os dados no Banco de Dados
     try
     {
-         //insert int cidade (nome,uf) values ('Carazinho','RS')
+         //insert int bairro (nome,uf) values ('Carazinho','RS')
         
-         String sqlinsert ="insert into cidade (nome,uf) values ('"+
-                     tf_nome.getText()+"','"+
-                     cb_uf.getSelectedItem()+"')";
+         String sqlinsert ="insert into bairro (nome) values ('"+
+                     tf_nome.getText()+"')";
 	con_cidade.statement.executeUpdate(sqlinsert);         
         JOptionPane.showMessageDialog(null,"Grava��o realizado com sucesso!");
        
        //atualiza o ResultSet
        //con_cidade.resultset = con_cidade.statement.executeQuery("Select * from cidade");
        atualiza_combo_box_cidade();
-       con_cidade.executeSQL("select * from cidade order by " + ordenacao);
+       con_cidade.executeSQL("select * from bairro order by " + ordenacao);
        con_cidade.resultset.first(); //posiciona no primeiro registro
        mostra_dados(); //ir� chamar a fun��o em que ir� mstrar os dados no form
     }
@@ -538,21 +511,21 @@ public class cad_cidades extends javax.swing.JFrame {
     // procedimento para exclus�o de registro
     try
     {
-      	String sql = "select * from cidade Where cod = "+tf_codigo.getText();
+      	String sql = "select * from bairro Where cod = "+tf_codigo.getText();
    	con_cidade.executeSQL(sql); 
         con_cidade.resultset.first();
-        String nome = "Deletar a Cidade : "+con_cidade.resultset.getString("nome")+" ?";
+        String nome = "Deletar o bairro : "+con_cidade.resultset.getString("nome")+" ?";
         int opcao_escolhida = JOptionPane.showConfirmDialog(null,nome,"Exclus�o ",JOptionPane.YES_NO_OPTION);
         if (opcao_escolhida == JOptionPane.YES_OPTION)
    	{
-   	    sql = "DELETE FROM cidade Where cod ="+tf_codigo.getText();
+   	    sql = "DELETE FROM bairro Where cod ="+tf_codigo.getText();
   	    int conseguiu_excluir = con_cidade.statement.executeUpdate(sql);
   	    if (conseguiu_excluir == 1)
             {
                 JOptionPane.showMessageDialog(null,"Exclus�o realizada com sucesso");
                 //atualiza o ResultSet
                 atualiza_combo_box_cidade();
-                con_cidade.executeSQL("Select * from cidade order by " + ordenacao);
+                con_cidade.executeSQL("Select * from bairro order by " + ordenacao);
                 con_cidade.resultset.first(); //posiciona no primeiro registro
                 mostra_dados(); //ir� chamar a fun��o em que ir� mstrar os dados no form
             }
@@ -678,14 +651,13 @@ public class cad_cidades extends javax.swing.JFrame {
     private void botao_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_alterarActionPerformed
     try
     {
-        String sql ="UPDATE cidade SET nome ='"+tf_nome.getText()+"',"+
-                     "uf = '"+cb_uf.getSelectedItem()+"' where cod = "+tf_codigo.getText();
+        String sql ="UPDATE cidade SET nome ='"+tf_nome.getText()+"' where cod = "+tf_codigo.getText();
         con_cidade.statement.executeUpdate(sql);
         JOptionPane.showMessageDialog(null,"Altera��o realizado com sucesso!");
        
        //atualiza o ResultSet
        atualiza_combo_box_cidade();
-       con_cidade.executeSQL("Select * from cidade order by " + ordenacao);
+       con_cidade.executeSQL("Select * from bairro order by " + ordenacao);
        con_cidade.resultset.next(); //posiciona no primeiro registro
        mostra_dados(); //ir� chamar a fun��o em que ir� mstrar os dados no form
      }
@@ -718,7 +690,7 @@ public class cad_cidades extends javax.swing.JFrame {
     }//GEN-LAST:event_rb_nomeActionPerformed
 
     private void bt_filtrar_gradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_filtrar_gradeActionPerformed
-        con_cidade.executeSQL("select * from cidade where nome like '%"+tf_pesquisa.getText()+"%' order by "+
+        con_cidade.executeSQL("select * from bairro where nome like '%"+tf_pesquisa.getText()+"%' order by "+
                    ordenacao);
         preencher_jtable();
 
@@ -729,7 +701,7 @@ public class cad_cidades extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cad_cidades().setVisible(true);
+                new cad_bairros().setVisible(true);
             }
         });
     }
@@ -748,12 +720,10 @@ public class cad_cidades extends javax.swing.JFrame {
     private javax.swing.JButton bt_proximo;
     private javax.swing.JButton bt_ultimo;
     private javax.swing.JComboBox cb_pesquisa;
-    private javax.swing.JComboBox cb_uf;
     private javax.swing.ButtonGroup grupo_ordenacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -772,7 +742,6 @@ public class cad_cidades extends javax.swing.JFrame {
         {
             tf_codigo.setText(con_cidade.resultset.getString("cod"));
             tf_nome.setText(con_cidade.resultset.getString("nome"));
-            cb_uf.setSelectedItem(con_cidade.resultset.getString("uf"));
         }
         catch(SQLException erro)
         {
@@ -781,7 +750,7 @@ public class cad_cidades extends javax.swing.JFrame {
            else if (navega == 2)
                     JOptionPane.showMessageDialog(null, "Você já esta no ultimo registro");
            else
-                    JOptionPane.showMessageDialog(null, "Não localizou cidade" + erro);
+                    JOptionPane.showMessageDialog(null, "Não localizou bairro" + erro);
         }
     }
     
@@ -790,13 +759,13 @@ public class cad_cidades extends javax.swing.JFrame {
         try
             {
                 cb_pesquisa.removeAllItems();
-                con_cidade.executeSQL("select * from cidade order by " + ordenacao);
+                con_cidade.executeSQL("select * from bairro order by " + ordenacao);
                 while (con_cidade.resultset.next())
                         cb_pesquisa.addItem(con_cidade.resultset.getString("nome"));
             }
         catch(SQLException erro)
             {
-               JOptionPane.showMessageDialog(null, "Não localizou cidade" + erro);
+               JOptionPane.showMessageDialog(null, "Não localizou Bairro" + erro);
             }
     }
     
@@ -804,7 +773,6 @@ public class cad_cidades extends javax.swing.JFrame {
     {
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(20);
          
         DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
         modelo.setNumRows(0);
@@ -813,7 +781,7 @@ public class cad_cidades extends javax.swing.JFrame {
         {
             
            while (con_cidade.resultset.next()) 
-                 modelo.addRow(new Object [] {con_cidade.resultset.getString("Cod"),con_cidade.resultset.getString("nome"),con_cidade.resultset.getString("uf")});
+                 modelo.addRow(new Object [] {con_cidade.resultset.getString("Cod"),con_cidade.resultset.getString("nome")});
            con_cidade.resultset.first();
          }  
          catch (SQLException erro){
@@ -824,7 +792,7 @@ public class cad_cidades extends javax.swing.JFrame {
         public void ordem_visualizacao(String Ordem)
     {
         ordenacao = Ordem;
-        con_cidade.executeSQL("select * from cidade  order by "+ordenacao);           
+        con_cidade.executeSQL("select * from bairro  order by "+ordenacao);           
         preencher_jtable();
         atualiza_combo_box_cidade();
         try
